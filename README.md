@@ -80,7 +80,7 @@ Scheduled using a cron expression: `0 */8 * * *` (every 8 hours).
 
 ```env
 OPEN_WEATHER_MAP_API_KEY='your_api_key'
-CITIES_LIST=["Paris", "New York", "Tokyo"]
+CITIES_LIST=["Casablanca", "London", "Madrid", "Riad", "Dubai", "New York", "Tokyo"]
 CSV_FILE_PATH='data/weather_data.csv'
 RECIPIENT_EMAIL='receiver@example.com'
 SENDER_EMAIL='sender@gmail.com'
@@ -88,19 +88,6 @@ SENDER_PASSWORD='your_password'
 ```
 
 > ✅ Use **dotenv** to load these values securely into your Airflow DAG.
-
----
-
-## 🔥 Optional Enhancements
-
-| Feature | Description |
-|--------|-------------|
-| 🔁 Retry logic | Retry failed API calls automatically |
-| 📬 Alerting | Email alert if temperature exceeds 35°C |
-| ☁️ Cloud storage | Upload data to **Google Sheets**, **S3**, etc. |
-| 🧠 Forecasting | Use **ML models** for weather trend predictions |
-
----
 
 ## 🚀 Get Started
 
