@@ -3,7 +3,10 @@ logs/
 __pycache__/
 save.txt
 airflow.cfg
+airflow.db
 airflow-webserver.pid
 webserver_config.py
 ./dags/hello_dag.py
+hello_dag.py
 ./dags/simple_dag.py
+simple_dag.py

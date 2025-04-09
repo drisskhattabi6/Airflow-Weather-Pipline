@@ -8,22 +8,30 @@ from airflow.decorators import task
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
-import logging
+from airflow.utils.log.logging_mixin import LoggingMixin
+import json
 
 load_dotenv()
 
-# Configure Logger
-logging.basicConfig(filename="logging.log", format='%(asctime)s %(message)s', filemode='w')
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+logger = LoggingMixin().log
 
 # Load Sensitive Data
 API_KEY = os.getenv("OPEN_WEATHER_MAP_API_KEY")
-CITIES_LIST = os.getenv("CITIES_LIST")
+CITIES_LIST = json.loads(os.getenv("CITIES_LIST"))
 CSV_FILE_PATH = os.getenv("CSV_FILE_PATH")
 RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
+
+if not API_KEY:
+    logger.error("Missing OpenWeatherMap API key.")
+
+if not CITIES_LIST or not isinstance(CITIES_LIST, list):
+    logger.error("CITIES_LIST is missing or not a list.")
+
+if not CSV_FILE_PATH:
+    logger.error("CSV_FILE_PATH is missing.")
+
 
 def send_email_report(data: list, recipient: str, sender: str, password: str):
     if not data:
@@ -117,7 +125,6 @@ with DAG(
         if fetched_data : 
             transformed_data = []
             for data in fetched_data:
-
                 transformed_data.append({
                         "datetime": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                         "city": data["name"],
@@ -149,6 +156,6 @@ with DAG(
 
     # Task flow
     weather_data = fetch_weather()
-    transformed_weather_data = transform_data()
+    transformed_weather_data = transform_data(weather_data)
     load_to_csv(transformed_weather_data)
     notify(transformed_weather_data)

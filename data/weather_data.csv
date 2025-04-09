@@ -7,30 +7,6 @@ datetime,city,temperature,humidity,weather,wind_speed,country
 2025-04-08 16:00:41,Paris,18.5,30,clear sky,4.12,FR
 2025-04-08 16:00:41,Riad,33.07,17,clear sky,3.9,SA
 2025-04-08 16:00:41,Dubie,8.54,40,broken clouds,6.64,PL
-2025-04-08 16:10:05,Casablanca,25.74,50,scattered clouds,2.06,MA
-2025-04-08 16:10:05,Rabat,31.04,40,clear sky,3.09,MA
-2025-04-08 16:10:06,Ouazzane,26.61,38,scattered clouds,1.64,MA
-2025-04-08 16:10:06,London,15.5,43,overcast clouds,2.24,GB
-2025-04-08 16:10:06,Madrid,23.46,35,few clouds,3.6,ES
-2025-04-08 16:10:06,Paris,18.36,30,clear sky,4.12,FR
-2025-04-08 16:10:06,Riad,33.06,17,clear sky,3.9,SA
-2025-04-08 16:10:06,Dubai,32.96,33,clear sky,5.66,AE
-2025-04-08 16:46:04,Casablanca,25.74,44,scattered clouds,2.57,MA
-2025-04-08 16:46:05,Rabat,27.04,54,overcast clouds,3.6,MA
-2025-04-08 16:46:05,Ouazzane,26.8,38,broken clouds,1.33,MA
-2025-04-08 16:46:05,London,14.84,43,overcast clouds,5.14,GB
-2025-04-08 16:46:05,Madrid,23.51,35,clear sky,3.09,ES
-2025-04-08 16:46:05,Paris,18.45,29,clear sky,4.12,FR
-2025-04-08 16:46:05,Riad,31.73,19,clear sky,4.69,SA
-2025-04-08 16:46:05,Dubai,31.96,35,clear sky,4.12,AE
-2025-04-08 16:50:20,Casablanca,25.74,44,scattered clouds,2.57,MA
-2025-04-08 16:50:20,Rabat,27.04,54,overcast clouds,3.6,MA
-2025-04-08 16:50:20,Ouazzane,26.8,38,broken clouds,1.33,MA
-2025-04-08 16:50:20,London,14.94,42,overcast clouds,5.14,GB
-2025-04-08 16:50:20,Madrid,23.51,33,clear sky,3.09,ES
-2025-04-08 16:50:20,Paris,18.45,29,clear sky,4.12,FR
-2025-04-08 16:50:21,Riad,31.73,19,clear sky,4.69,SA
-2025-04-08 16:50:21,Dubai,31.96,35,clear sky,4.12,AE
 2025-04-08 16:58:39,Casablanca,25.74,44,scattered clouds,2.57,MA
 2025-04-08 16:58:39,Rabat,27.04,54,broken clouds,3.6,MA
 2025-04-08 16:58:40,Ouazzane,26.8,38,broken clouds,1.39,MA
@@ -39,14 +15,6 @@ datetime,city,temperature,humidity,weather,wind_speed,country
 2025-04-08 16:58:40,Paris,18.45,29,clear sky,4.12,FR
 2025-04-08 16:58:40,Riad,31.73,19,clear sky,4.53,SA
 2025-04-08 16:58:40,Dubai,31.96,35,clear sky,4.12,AE
-2025-04-08 17:00:07,Casablanca,25.74,44,scattered clouds,2.57,MA
-2025-04-08 17:00:07,Rabat,27.04,54,broken clouds,3.6,MA
-2025-04-08 17:00:07,Ouazzane,26.8,38,broken clouds,1.39,MA
-2025-04-08 17:00:07,London,14.96,43,overcast clouds,5.14,GB
-2025-04-08 17:00:07,Madrid,23.65,35,clear sky,3.09,ES
-2025-04-08 17:00:07,Paris,18.24,29,clear sky,4.12,FR
-2025-04-08 17:00:07,Riad,31.73,19,clear sky,4.53,SA
-2025-04-08 17:00:07,Dubai,31.96,35,clear sky,4.12,AE
 2025-04-09 10:53:25,Casablanca,20.74,52,mist,1.03,MA
 2025-04-09 10:53:25,Rabat,24.04,53,broken clouds,3.6,MA
 2025-04-09 10:53:25,Ouazzane,22.82,49,overcast clouds,2.29,MA
@@ -55,11 +23,24 @@ datetime,city,temperature,humidity,weather,wind_speed,country
 2025-04-09 10:53:25,Paris,13.62,52,clear sky,4.12,FR
 2025-04-09 10:53:25,Riad,35.91,13,clear sky,1.7,SA
 2025-04-09 10:53:26,Dubai,31.96,45,clear sky,5.14,AE
-2025-04-09 10:53:47,Casablanca,20.74,52,mist,1.03,MA
-2025-04-09 10:53:47,Rabat,24.04,53,broken clouds,3.6,MA
-2025-04-09 10:53:47,Ouazzane,22.82,49,overcast clouds,2.29,MA
-2025-04-09 10:53:48,London,9.05,68,overcast clouds,5.66,GB
-2025-04-09 10:53:48,Madrid,17.99,43,clear sky,3.09,ES
-2025-04-09 10:53:48,Paris,13.62,52,clear sky,4.12,FR
-2025-04-09 10:53:48,Riad,35.91,13,clear sky,1.7,SA
-2025-04-09 10:53:48,Dubai,31.96,45,clear sky,5.14,AE
+2025-04-09 14:39:59,Casablanca,22.19,68,mist,3.09,MA
+2025-04-09 14:39:59,Rabat,32.04,29,overcast clouds,4.12,MA
+2025-04-09 14:39:59,Ouezzane,26.81,45,overcast clouds,3.96,MA
+2025-04-09 14:39:59,London,12.43,60,clear sky,1.79,GB
+2025-04-09 14:39:59,Madrid,22.49,33,clear sky,2.06,ES
+2025-04-09 14:39:59,Riyadh,36.63,11,clear sky,1.84,SA
+2025-04-09 14:39:59,Dubai,30.96,55,clear sky,4.63,AE
+2025-04-09 14:44:45,Casablanca,22.19,68,mist,3.09,MA
+2025-04-09 14:44:45,Rabat,32.04,27,overcast clouds,4.12,MA
+2025-04-09 14:44:45,Ouezzane,26.81,45,overcast clouds,3.96,MA
+2025-04-09 14:44:45,London,12.37,59,broken clouds,4.12,GB
+2025-04-09 14:44:45,Madrid,22.66,33,clear sky,2.06,ES
+2025-04-09 14:44:45,Riyadh,36.63,11,clear sky,1.84,SA
+2025-04-09 14:44:45,Dubai,29.96,58,clear sky,4.12,AE
+2025-04-09 14:50:57,Casablanca,22.19,68,mist,3.09,MA
+2025-04-09 14:50:57,Rabat,32.04,27,overcast clouds,4.12,MA
+2025-04-09 14:50:57,Ouezzane,26.81,45,overcast clouds,3.96,MA
+2025-04-09 14:50:57,London,12.52,59,broken clouds,4.12,GB
+2025-04-09 14:50:57,Madrid,22.51,34,clear sky,2.57,ES
+2025-04-09 14:50:57,Riyadh,36.63,11,clear sky,1.84,SA
+2025-04-09 14:50:57,Dubai,29.96,58,clear sky,4.12,AE
