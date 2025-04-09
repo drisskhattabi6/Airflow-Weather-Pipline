@@ -1,6 +1,9 @@
 *.log
-/logs
 logs/
 __pycache__/
-__pycache__
 save.txt
+airflow.cfg
+airflow-webserver.pid
+webserver_config.py
+./dags/hello_dag.py
+./dags/simple_dag.py

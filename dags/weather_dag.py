@@ -1,6 +1,5 @@
 import os
 import smtplib
-import sqlite3
 import requests
 import pandas as pd
 from airflow import DAG
@@ -9,9 +8,16 @@ from airflow.decorators import task
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
+# Configure Logger
+logging.basicConfig(filename="logging.log", format='%(asctime)s %(message)s', filemode='w')
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
+# Load Sensitive Data
 API_KEY = os.getenv("OPEN_WEATHER_MAP_API_KEY")
 CITIES_LIST = os.getenv("CITIES_LIST")
 CSV_FILE_PATH = os.getenv("CSV_FILE_PATH")
@@ -21,7 +27,7 @@ SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
 
 def send_email_report(data: list, recipient: str, sender: str, password: str):
     if not data:
-        print("[INFO] No data to email.")
+        logger.info("[INFO] No data to email.")
         return
 
     try:
@@ -61,18 +67,11 @@ def send_email_report(data: list, recipient: str, sender: str, password: str):
             server.login(sender, password)
             server.sendmail(sender, recipient, msg.as_string())
 
-        print(f"[INFO] Email sent successfully to {recipient}.")
+        logger.info(f"[INFO] Email sent successfully to {recipient}.")
 
     except Exception as e:
-        print(f"[EMAIL ERROR] {str(e)}")
+        logger.error(f"[EMAIL ERROR] {str(e)}")
 
-# DB credentials
-MYSQL_CONFIG = {
-    'host': 'localhost',
-    'user': 'admin',
-    'password': '',
-    'database': 'weather_db'
-}
 
 default_args = {
     'start_date': datetime(2024, 1, 1),
@@ -90,41 +89,51 @@ with DAG(
     @task
     def fetch_weather():
         data = []
-        for city in CITYS:
+        for city in CITIES_LIST:
             url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
 
             try:
                 response = requests.get(url)
                 if response.status_code != 200:
-                    print(f"[ERROR] Failed to fetch weather for {city}. Status code: {response.status_code}")
-                    print(f"Message: {response.json().get('message')}")
+                    logger.error(f"[ERROR] Failed to fetch weather for {city}. Status code: {response.status_code}")
+                    logger.error(f"Message: {response.json().get('message')}")
                     continue
 
                 res = response.json()
 
                 if "main" not in res or "weather" not in res or "wind" not in res:
-                    print(f"[ERROR] Incomplete data received for {city}: {res}")
+                    logger.error(f"[ERROR] Incomplete data received for {city}: {res}")
                     continue
 
-                data.append({
-                    "datetime": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                    "city": city,
-                    "temperature": res["main"]["temp"],
-                    "humidity": res["main"]["humidity"],
-                    "weather": res["weather"][0]["description"],
-                    "wind_speed": res["wind"]["speed"],
-                    "country": res["sys"]["country"],
-                })
+                data.append(res)
 
             except Exception as e:
-                print(f"[EXCEPTION] Error fetching weather for {city}: {str(e)}")
+                logger.error(f"[EXCEPTION] Error fetching weather for {city}: {str(e)}")
 
         return data 
+    
+    @task
+    def transform_data(fetched_data) :
+        if fetched_data : 
+            transformed_data = []
+            for data in fetched_data:
+
+                transformed_data.append({
+                        "datetime": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                        "city": data["name"],
+                        "temperature": data["main"]["temp"],
+                        "humidity": data["main"]["humidity"],
+                        "weather": data["weather"][0]["description"],
+                        "wind_speed": data["wind"]["speed"],
+                        "country": data["sys"]["country"],
+                })
+
+            return transformed_data 
 
     @task
-    def insert_to_csv(data: list):
+    def load_to_csv(data: list):
         if not data:
-            print("[INFO] No data to insert.")
+            logger.info("[INFO] No data to insert.")
             return
 
         df = pd.DataFrame(data)
@@ -136,12 +145,10 @@ with DAG(
 
     @task
     def notify(data: list):
-        send_email_report(data, 
-                        recipient="drisskhattabi66@gmail.com", 
-                        sender="drisskhattabi6@gmail.com", 
-                        password="mgwy chst ymzz oypi")
+        send_email_report(data, recipient=RECIPIENT_EMAIL, sender=SENDER_EMAIL, password=SENDER_PASSWORD)
 
     # Task flow
     weather_data = fetch_weather()
-    insert_to_csv(weather_data)
-    notify(weather_data)
+    transformed_weather_data = transform_data()
+    load_to_csv(transformed_weather_data)
+    notify(transformed_weather_data)
