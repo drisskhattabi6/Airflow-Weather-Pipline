@@ -14,6 +14,8 @@ This project automates the retrieval of weather data from multiple cities every 
 - 💾 Stores the data in a CSV file (extensible to SQLite/PostgreSQL)
 - 📊 Enables analysis and visualization via Power BI or Excel
 
+![](imgs/img2.png)
+
 ---
 
 ## 📌 Goals
@@ -62,17 +64,7 @@ weather_data_collector/
 
 Scheduled using a cron expression: `0 */8 * * *` (every 8 hours).
 
----
-
-## 📈 Step 5: Visualize with Power BI or Excel
-
-1. Open the CSV file from `/data/weather_data.csv`
-2. Load it into **Power BI** or **Excel**
-3. Create charts for:
-   - Temperature over time
-   - Humidity trends
-   - City-wise comparisons
-4. Gain insights into daily/weekly weather patterns
+![](imgs/img1.png)
 
 ---
 
